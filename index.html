@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
   <head>
     <meta charset="utf-8" />
@@ -60,11 +60,45 @@
 
           <section id="contact" aria-labelledby="contact-title">
             <h2 id="contact-title">Contact</h2>
-            <p>
-              ご連絡は
-              <a href="mugi0617zw@yahoo.co.jp">mugi0617zw@yahoo.co.jp</a>
-              へ。
-            </p>
+            <form id="contact-form" novalidate>
+              <div style="display: grid; gap: 12px; max-width: 560px">
+                <label>
+                  お名前
+                  <input
+                    name="name"
+                    type="text"
+                    required
+                    placeholder="山田 太郎"
+                  />
+                  <small class="error" aria-live="polite"></small>
+                </label>
+
+                <label>
+                  メールアドレス
+                  <input
+                    name="email"
+                    type="email"
+                    required
+                    placeholder="you@example.com"
+                  />
+                  <small class="error" aria-live="polite"></small>
+                </label>
+
+                <label>
+                  メッセージ
+                  <textarea
+                    name="message"
+                    rows="5"
+                    required
+                    placeholder="お問い合わせ内容をどうぞ"
+                  ></textarea>
+                  <small class="error" aria-live="polite"></small>
+                </label>
+
+                <button type="submit">送信</button>
+                <p id="contact-result" role="status" style="margin: 0"></p>
+              </div>
+            </form>
             <!-- 後日、問い合わせフォームに差し替え -->
           </section>
         </div>
