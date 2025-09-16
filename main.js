@@ -18,12 +18,16 @@ grid.innerHTML = works
 // 既存のコードは残してOK
 const y = document.getElementById("year");
 if (y) y.textContent = new Date().getFullYear();
-const form = document.getElementById("contact-form");
-if (form) {
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("contact-form");
+  if (!form) return;
+
+  form.setAttribute("novalidate", ""); // 念のため
+
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    let ok = true;
 
+    let ok = true;
     const fields = [
       ["name", "お名前を入力してください"],
       ["email", "正しいメールアドレスを入力してください"],
@@ -31,24 +35,34 @@ if (form) {
     ];
 
     fields.forEach(([name, msg]) => {
-      const input = form.elements[name];
-      const error = input.parentElement.querySelector(".error");
+      const el = form.elements[name];
+      const input = /** @type {HTMLInputElement|HTMLTextAreaElement|null} */ (
+        el ?? null
+      );
+      const error = input?.parentElement?.querySelector(".error");
+      if (!input || !error) return;
+
       if (!input.checkValidity()) {
-        // required / type="email" を利用
         error.textContent = msg;
+        input.setAttribute("aria-invalid", "true");
         ok = false;
       } else {
         error.textContent = "";
+        input.removeAttribute("aria-invalid");
       }
     });
 
     const result = document.getElementById("contact-result");
     if (ok) {
-      result.textContent =
-        "ありがとうございます。送信テスト完了（現時点では実送信しません）。";
+      if (result)
+        result.textContent =
+          "ありがとうございます。送信テスト完了（現時点では実送信しません）。";
       form.reset();
+      // 念のためURLの?xxxを消す
+      if (history.replaceState)
+        history.replaceState(null, "", location.pathname);
     } else {
-      result.textContent = "";
+      if (result) result.textContent = "";
     }
   });
-}
+});
