@@ -1,1 +1,62 @@
-﻿body{font-family:system-ui,-apple-system,Segoe UI,Roboto;line-height:1.6;margin:0;padding:24px} h1{font-size:28px;margin:0 0 16px}
+:root {
+  --space: 24px;
+  --max: 960px;
+  --bg: #0f172a;
+  --fg: #e2e8f0;
+}
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto;
+  margin: 0;
+  color: #111;
+  background: #fff;
+  line-height: 1.7;
+}
+.container {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: var(--space);
+}
+header {
+  background: var(--bg);
+  color: var(--fg);
+}
+header .container {
+  padding: 48px var(--space);
+}
+h1 {
+  margin: 0 0 12px;
+  font-size: 28px;
+}
+h2 {
+  margin: 24px 0 12px;
+  font-size: 22px;
+}
+.cardgrid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+.card {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px;
+  transition: transform 0.1s ease;
+  background: #fff;
+}
+.card:hover {
+  transform: translateY(-2px);
+}
+a {
+  color: #2563eb;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
